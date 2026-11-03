@@ -43,3 +43,25 @@ ros2 service call /add_two_ints example_interfaces/srv/AddTwoInts "{a: 17, b: 25
 
 预期响应中 `sum` 为 `42`。若服务名不同，先用 `ros2 service list` 查看当前服务名，再将其替换到调用命令中。按 `Ctrl+C` 停止服务端。
 
+
+## 练习二：检查并修改节点参数
+
+参数用于配置节点行为。使用示例参数节点观察参数的声明、读取和更新。
+
+```bash
+source /opt/ros/humble/setup.bash
+ros2 run demo_nodes_cpp parameter_blackboard --ros-args -r __node:=lesson_parameters
+```
+
+在另一个终端检查节点参数：
+
+```bash
+source /opt/ros/humble/setup.bash
+ros2 param list /lesson_parameters
+ros2 param get /lesson_parameters use_sim_time
+ros2 param set /lesson_parameters lesson_rate 5
+ros2 param get /lesson_parameters lesson_rate
+```
+
+如果节点未声明 `lesson_rate`，运行时设置可能被拒绝；这时先通过 `ros2 param list` 选择节点已声明的参数。参数服务仅影响当前节点实例，重启节点后是否保留取决于参数是否从文件加载。
+
