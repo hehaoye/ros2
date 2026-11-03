@@ -65,3 +65,39 @@ ros2 param get /lesson_parameters lesson_rate
 
 如果节点未声明 `lesson_rate`，运行时设置可能被拒绝；这时先通过 `ros2 param list` 选择节点已声明的参数。参数服务仅影响当前节点实例，重启节点后是否保留取决于参数是否从文件加载。
 
+
+## 练习三：用 launch 同时启动两个节点
+
+Launch 文件能集中启动多个节点。新建 `talker_listener.launch.py`：
+
+```python
+from launch import LaunchDescription
+from launch_ros.actions import Node
+
+
+def generate_launch_description():
+    return LaunchDescription([
+        Node(
+            package='demo_nodes_cpp',
+            executable='talker',
+            name='lesson_talker',
+            output='screen',
+        ),
+        Node(
+            package='demo_nodes_cpp',
+            executable='listener',
+            name='lesson_listener',
+            output='screen',
+        ),
+    ])
+```
+
+在保存该文件的目录运行：
+
+```bash
+source /opt/ros/humble/setup.bash
+ros2 launch ./talker_listener.launch.py
+```
+
+在另一个终端运行 `ros2 topic echo /chatter` 查看消息。launch 退出时会一起停止由它启动的节点。
+
