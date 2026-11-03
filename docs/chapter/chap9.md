@@ -20,3 +20,8 @@ ros2 run demo_nodes_cpp listener
 ```
 
 ![](../img/ros/ros2_talker_listener.png)
+
+
+## 新增：载具仿真实验项目
+
+本组提供五个 ROS 2 小型载具控制项目，包含差速小车激光雷达避障、纯追踪路径跟踪、无人机三维航点跟踪、禁飞区守护和水下 ROV 六自由度响应模型。详见[项目总览](chap9_projects.md)。
