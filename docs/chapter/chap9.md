@@ -123,3 +123,27 @@ ros2 run demo_nodes_cpp fibonacci_action_client
 
 客户端运行时会显示任务反馈，完成后返回最终序列。也可以用 `ros2 action info /fibonacci` 查看 Action 类型和服务端数量。若示例程序的 Action 名称不同，以 `ros2 action list` 输出为准。
 
+
+## 练习五：查看话题 QoS 配置
+
+QoS（服务质量）策略决定话题通信的可靠性、队列深度等行为。先启动示例发布者：
+
+```bash
+source /opt/ros/humble/setup.bash
+ros2 run demo_nodes_cpp talker
+```
+
+在另一个终端检查话题类型和端点 QoS：
+
+```bash
+source /opt/ros/humble/setup.bash
+ros2 topic info /chatter --verbose
+```
+
+观察发布者和订阅者的 Reliability、Durability、History、Depth 等字段。订阅端和发布端使用不兼容的 QoS 时，即使话题名称相同也可能收不到消息；排查时应同时确认话题名称、消息类型和 QoS 配置。
+
+## 验证说明
+
+上述内容是基于 ROS 2 Humble 常见示例包编写的练习说明。本次提交未在目标 Ubuntu/ROS 环境中实际运行；请按本机安装的 `demo_nodes_cpp` 版本核对可执行程序名称，并在提交合并前完成运行验证。
+
+> 本页面内容由 OpenAI Codex 协助整理；提交者需检查示例与本地 ROS 2 环境的一致性，并对最终内容负责。
