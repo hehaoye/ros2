@@ -2,7 +2,7 @@
 
 该练习将位置目标限制在可配置的三维盒形区域内，越界时发布限幅后的目标并记录警告。完整代码位于 `src/chap9/uav_geofence_guard/`。
 
-![无人机禁飞区概念示意图](../../img/ros2_five_projects/uav_geofence_guard.png)
+![无人机禁飞区概念示意图](../img/ros2_five_projects/uav_geofence_guard.png)
 
 > 上图为 AI 生成的概念示意图，不是仿真截图。
 
