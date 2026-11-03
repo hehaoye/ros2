@@ -101,3 +101,25 @@ ros2 launch ./talker_listener.launch.py
 
 在另一个终端运行 `ros2 topic echo /chatter` 查看消息。launch 退出时会一起停止由它启动的节点。
 
+
+## 练习四：观察 Action 的目标、反馈和结果
+
+Action 适合需要较长时间执行并持续汇报进度的任务。使用 Fibonacci 示例观察客户端和服务端：
+
+终端 1：
+
+```bash
+source /opt/ros/humble/setup.bash
+ros2 run demo_nodes_cpp fibonacci_action_server
+```
+
+终端 2：
+
+```bash
+source /opt/ros/humble/setup.bash
+ros2 action list
+ros2 run demo_nodes_cpp fibonacci_action_client
+```
+
+客户端运行时会显示任务反馈，完成后返回最终序列。也可以用 `ros2 action info /fibonacci` 查看 Action 类型和服务端数量。若示例程序的 Action 名称不同，以 `ros2 action list` 输出为准。
+
